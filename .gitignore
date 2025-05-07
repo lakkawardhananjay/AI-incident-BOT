@@ -1,0 +1,78 @@
+# Python cache
+/incident-bot/__pycache__/
+/incident-bot/*.py[cod]
+/incident-bot/*.so
+
+# Virtual environments
+/incident-bot/venv/
+/incident-bot/ENV/
+/incident-bot/env/
+/incident-bot/.venv/
+/incident-bot/.env.save.1
+/incident-bot/.env.save
+/incident-bot/.env
+# Logs
+/incident-bot/*.log
+/incident-bot/incident_bot.log
+
+# Runtime/generated data
+/incident-bot/alerts_processed.jsonl
+
+# Docker artifacts
+/incident-bot/*.tar
+/incident-bot/*.pid
+
+# System files
+/incident-bot/.DS_Store
+/incident-bot/Thumbs.db
+
+# Python packaging
+/incident-bot/*.egg-info/
+/incident-bot/dist/
+/incident-bot/build/
+
+# Editor settings
+/incident-bot/.vscode/
+
+# Testing
+/incident-bot/.pytest_cache/
+
+# Swap files
+/incident-bot/*.swp
+
+
+# Ignore Python cache files
+/monitoring/server/__pycache__/
+/monitoring/server/*.pyc
+/monitoring/server/*.pyo
+/monitoring/server/*.pyd
+
+# Ignore virtual environment
+/monitoring/server/venv/
+
+# Ignore log files and other output
+/monitoring/server/*.log
+
+# Ignore Docker-related artifacts
+/monitoring/server/*.pid
+
+# Byte-compiled / optimized / DLL files
+/monitoring/server/*.so
+
+# Distribution / packaging
+/monitoring/server/build/
+/monitoring/server/dist/
+/monitoring/server/*.egg-info/
+
+# Ignore system-specific files
+/monitoring/server/.DS_Store
+/monitoring/server/Thumbs.db
+
+
+/monitoring/prometheus/*
+!/monitoring/prometheus/prometheus.yml
+!/monitoring/prometheus/first_rules.yml
+
+/monitoring/alertmanager/*
+!/monitoring/alertmanager/alertmanager.yml
+

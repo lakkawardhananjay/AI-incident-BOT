@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  incident-bot:
+    build:
+      context: ./incident-bot
+      dockerfile: Dockerfile
+    container_name: incident-bot
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+    restart: unless-stopped
+  server:
+    build:
+      context: ./monitoring/server
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - HOST=0.0.0.0       
+    restart: unless-stopped

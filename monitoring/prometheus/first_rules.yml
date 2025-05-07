@@ -1,0 +1,60 @@
+groups:
+  # Basic system-level alerts
+  - name: instance-health
+    rules:
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 90
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: "{{ $labels.instance }} CPU usage is above 90% for more than 1 minute"
+          
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: "{{ $labels.instance }} memory usage is above 85% for more than 1 minute"
+          
+      - alert: LowDiskSpace
+        expr: (node_filesystem_size_bytes{mountpoint="/"} - node_filesystem_free_bytes{mountpoint="/"}) / node_filesystem_size_bytes{mountpoint="/"} * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low disk space on {{ $labels.instance }}"
+          description: "{{ $labels.instance }} has less than 15% free disk space on root filesystem"
+
+  # Flask application specific alerts
+  - name: flask-app-alerts
+    rules:
+      - alert: HighSimulatedCPULoad
+        expr: cpu_load_simulation > 0.9
+        for: 10s
+        labels:
+          severity: critical
+        annotations:
+          summary: "High simulated CPU load"
+          description: "The Flask application is reporting high CPU load simulation"
+          
+      - alert: HighRequestRate
+        expr: rate(request_count_total[1m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High request rate detected"
+          description: "The application is receiving more than 10 requests per minute for 2 minutes"
+          
+      - alert: CpuEndpointAbuse
+        expr: rate(request_count_total{endpoint="/cpu"}[1m]) > 3
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Potential CPU endpoint abuse"
+          description: "The CPU-intensive endpoint is being called more than 3 times per minute"
