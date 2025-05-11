@@ -33,25 +33,7 @@ This project automates end-to-end incident management for modern DevOps environm
 
 ## 📸 Architecture Diagram
 
-```txt
-  +-----------+         +---------------+         +-------------+
-  | Prometheus| ----->  | Alertmanager  | ----->  |   Slack Bot |
-  +-----------+         +---------------+         +-------------+
-        |                     |                         |
-        v                     v                         |
-  [ Target Metrics ]     [ Webhook Trigger ]            |
-        |                     |                         |
-        v                     v                         |
-  +----------------+   +------------------+             |
-  | Self-Healing   |<--| AI Suggestion API|             |
-  | Scripts        |   +------------------+             |
-  +----------------+                                   |
-        |                                              |
-        v                                              v
-  +-------------------+                         +----------------+
-  | Incident Logs     | ---> (Archive) -------> |  AWS S3 Bucket |
-  +-------------------+                         +----------------+
-```
+![Image](https://github.com/user-attachments/assets/1693011f-0fdb-4782-801e-46b178c7dcf1)
 ## ⚙️ Tech Stack
 Infrastructure: OpenTofu, AWS (S3)
 
@@ -79,13 +61,13 @@ ai-incident-manager/
 │   └── prometheus.yml
 ├── scripts/
 │   ├── self_heal.sh
-│   ├── upload_to_s3.sh
+│   |
 │   └── setup.sh
 ├── infra/
-│   └── main.tftpl (OpenTofu templates)
+│   └── main.tofu (OpenTofu templates)
 ├── logs/
-├── slack-bot/
-│   └── app.py
+|
+│   
 └── README.md
 ```
 ## 🛠️ Setup Instructions
@@ -146,23 +128,3 @@ Here are some potential enhancements to take this system to the next level:
 
 📄 License
 MIT License
-
-  Copyright (c) [2025] [Dhananjay lakkawar]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
-OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
