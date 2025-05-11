@@ -53,22 +53,26 @@ Logging: S3 Upload with incident ID + timestamp
 
 ## 📦 Project Structure
 ```
-ai-incident-manager/
+AI-incident-BOT/
+├── README.md
+├── .gitignore
 ├── docker-compose.yml
-├── alertmanager/
-│   └── alertmanager.yml
-├── prometheus/
-│   └── prometheus.yml
-├── scripts/
-│   ├── self_heal.sh
-│   |
-│   └── setup.sh
+├── setup.sh
+├── incident-bot/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── main.py
 ├── infra/
-│   └── main.tofu (OpenTofu templates)
-├── logs/
-|
-│   
-└── README.md
+│   ├── main.tofu
+│   └── creates3user/
+│       └── create-user.tofu
+├── monitoring/
+│   ├── prometheus/
+│   │   ├── prometheus.yml
+│   │   └── alert.rules.yml
+│   └── alertmanager/
+│       └── alertmanager.yml
+
 ```
 ## 🛠️ Setup Instructions
 Clone the Repository
